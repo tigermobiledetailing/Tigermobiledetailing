@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tiger Mobile Detailing – Book Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #1B3A6B; --red-dark: #122748; --black: #F2F5FA; --panel: #E4EAF4;
+    --card: #FFFFFF; --border: #C5D0E6; --silver: #1B3A6B; --white: #1a1a2e; --text-muted: #5a6a85;
+  }
+  body { background: #F2F5FA; color: #1a1a2e; font-family: 'Barlow', sans-serif; min-height: 100vh; }
+  header { background: linear-gradient(135deg, #0d1f3c 0%, #1B3A6B 60%, #2a52a0 100%); border-bottom: 3px solid #2a52a0; padding: 32px 20px 26px; text-align: center; position: relative; overflow: hidden; }
+  header::before { content:''; position:absolute; top:-30px; left:-40px; width:220px; height:130px; background:rgba(255,255,255,0.06); clip-path:polygon(0 0,100% 0,60% 100%,0 100%); }
+  header::after  { content:''; position:absolute; top:-30px; right:-40px; width:220px; height:130px; background:rgba(255,255,255,0.06); clip-path:polygon(40% 0,100% 0,100% 100%,0 100%); }
+  .logo-tiger { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,12vw,80px); color:#FFFFFF; letter-spacing:6px; line-height:1; }
+  .logo-sub { font-family:'Barlow Condensed',sans-serif; font-size:clamp(20px,5vw,34px); font-weight:900; color:#CBD8EE; letter-spacing:8px; text-transform:uppercase; margin-top:-4px; }
+  .tagline { font-size:12px; letter-spacing:3px; color:#CBD8EE; text-transform:uppercase; margin-top:6px; font-weight:600; }
+  .page { max-width:780px; margin:0 auto; padding:30px 16px 60px; }
+  .section-title { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#1B3A6B; border-left:3px solid #1B3A6B; padding-left:10px; margin-bottom:16px; }
+  .service-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px; }
+  .service-card { background:var(--card); border:2px solid var(--border); border-radius:6px; padding:16px 10px; text-align:center; cursor:pointer; transition:border-color .15s,background .15s; position:relative; }
+  .service-card:hover { border-color:#1B3A6B; box-shadow:0 2px 12px rgba(27,58,107,0.15); }
+  .service-card.selected { border-color:#1B3A6B; background:#dde6f7; }
+  .service-card.selected::after { content:'✓'; position:absolute; top:8px; right:10px; color:#1B3A6B; font-size:14px; font-weight:700; }
+  .vehicle-icon { font-size:28px; margin-bottom:6px; }
+  .vehicle-type { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; color:var(--silver); text-transform:uppercase; }
+  .vehicle-price { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--white); line-height:1.1; }
+  .addons-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:28px; }
+  .addon-card { background:var(--panel); border:1.5px solid var(--border); border-radius:6px; padding:12px 8px; text-align:center; cursor:pointer; transition:border-color .15s,background .15s; position:relative; }
+  .addon-card:hover { border-color:#1B3A6B; }
+  .addon-card.selected { border-color:#1B3A6B; background:#dde6f7; }
+  .addon-card.selected::after { content:'✓'; position:absolute; top:6px; right:8px; color:#1B3A6B; font-size:12px; font-weight:700; }
+  .addon-icon { font-size:20px; margin-bottom:4px; }
+  .addon-name { font-size:11px; font-weight:600; color:var(--silver); letter-spacing:1px; text-transform:uppercase; }
+  .addon-price { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#1B3A6B; }
+  .price-bar { background:linear-gradient(135deg,#0d1f3c,#1B3A6B); border-radius:6px; padding:12px 18px; display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+  .price-label { font-size:12px; letter-spacing:2px; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.7); }
+  .price-total { font-family:'Bebas Neue',sans-serif; font-size:36px; color:#fff; }
+  .divider { border:none; border-top:1px solid var(--border); margin:28px 0; }
+  .form-row { margin-bottom:16px; }
+  .form-row label { display:block; font-size:11px; letter-spacing:2px; font-weight:700; text-transform:uppercase; color:var(--silver); margin-bottom:6px; }
+  .form-row input, .form-row textarea, .form-row select { width:100%; background:#fff; border:1.5px solid #C5D0E6; border-radius:5px; color:#1a1a2e; font-family:'Barlow',sans-serif; font-size:15px; padding:12px 14px; outline:none; transition:border-color .15s; -webkit-appearance:none; }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color:var(--red); }
+  .form-row textarea { resize:vertical; min-height:90px; }
+  .form-row select option { background:#fff; color:#1a1a2e; }
+  .form-two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .upload-zone { border:2px dashed var(--border); border-radius:8px; padding:28px 20px; text-align:center; cursor:pointer; transition:border-color .2s,background .2s; background:var(--panel); position:relative; }
+  .upload-zone:hover { border-color:#1B3A6B; background:#dde6f7; }
+  .upload-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+  .upload-icon { font-size:36px; margin-bottom:8px; }
+  .upload-text { font-size:13px; color:var(--text-muted); }
+  .upload-text strong { color:#1B3A6B; }
+  .preview-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:8px; margin-top:12px; }
+  .preview-img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:5px; border:1.5px solid var(--border); }
+  .submit-btn { width:100%; background:#1B3A6B; color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:900; letter-spacing:4px; text-transform:uppercase; padding:22px; border:none; border-radius:8px; cursor:pointer; transition:background .15s,transform .1s; margin-top:16px; box-shadow:0 4px 20px rgba(27,58,107,0.35); }
+  .submit-btn:hover { background:#2a52a0; transform:translateY(-1px); }
+  .submit-btn:disabled { background:#555; cursor:not-allowed; transform:none; }
+  #success-screen { display:none; text-align:center; padding:60px 20px; }
+  .success-icon { font-size:64px; margin-bottom:16px; }
+  .success-title { font-family:'Bebas Neue',sans-serif; font-size:42px; color:#1B3A6B; letter-spacing:4px; }
+  .success-msg { color:var(--text-muted); font-size:15px; margin-top:10px; line-height:1.6; }
+  #admin-panel { display:none; }
+  .admin-toggle { text-align:center; margin-top:60px; }
+  .admin-toggle button { background:none; border:none; color:#333; font-size:10px; letter-spacing:1px; padding:4px 8px; cursor:pointer; text-transform:uppercase; opacity:0.4; }
+  .admin-login { background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:24px; max-width:320px; margin:16px auto; }
+  .admin-login input { width:100%; background:var(--card); border:1.5px solid var(--border); border-radius:5px; color:var(--white); font-size:15px; padding:10px 14px; margin-bottom:10px; outline:none; font-family:'Barlow',sans-serif; }
+  .admin-login button { width:100%; background:#1B3A6B; border:none; color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; letter-spacing:2px; padding:12px; border-radius:5px; cursor:pointer; text-transform:uppercase; }
+  .booking-card { background:var(--card); border:1.5px solid var(--border); border-radius:8px; padding:18px; margin-bottom:14px; }
+  .booking-card.pending  { border-left:4px solid #f5a623; }
+  .booking-card.accepted { border-left:4px solid #27ae60; }
+  .booking-card.declined { border-left:4px solid #555; opacity:0.6; }
+  .booking-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; }
+  .booking-name { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700; letter-spacing:1px; }
+  .booking-status { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:20px; }
+  .status-pending  { background:#f5a62322; color:#f5a623; border:1px solid #f5a623; }
+  .status-accepted { background:#27ae6022; color:#27ae60; border:1px solid #27ae60; }
+  .status-declined { background:#55555522; color:#888; border:1px solid #555; }
+  .booking-detail { font-size:13px; color:var(--text-muted); margin-top:6px; }
+  .booking-detail strong { color:var(--silver); }
+  .booking-photos { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .booking-photos img { width:72px; height:72px; object-fit:cover; border-radius:4px; border:1px solid var(--border); cursor:pointer; }
+  .booking-actions { display:flex; gap:10px; margin-top:14px; }
+  .btn-accept { flex:1; background:#1B6B3A; border:none; color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:2px; padding:10px; border-radius:5px; cursor:pointer; text-transform:uppercase; }
+  .btn-accept:hover { background:#2ecc71; }
+  .btn-decline { flex:1; background:var(--panel); border:1.5px solid var(--border); color:#888; font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:2px; padding:10px; border-radius:5px; cursor:pointer; text-transform:uppercase; }
+  .btn-decline:hover { border-color:var(--red); color:var(--red); }
+  .admin-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:4px; color:#1B3A6B; margin-bottom:4px; }
+  .admin-empty { text-align:center; color:var(--text-muted); padding:40px 0; font-size:14px; }
+  .filter-tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+  .filter-tab { background:var(--panel); border:1.5px solid var(--border); color:var(--text-muted); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:7px 14px; border-radius:4px; cursor:pointer; transition:all .15s; }
+  .filter-tab.active { border-color:#1B3A6B; color:#1B3A6B; background:#dde6f7; }
+  .note { font-size:11px; color:var(--text-muted); margin-top:10px; text-align:center; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#27ae60; color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; letter-spacing:2px; padding:14px 28px; border-radius:6px; z-index:999; opacity:0; transition:opacity .3s; pointer-events:none; text-transform:uppercase; white-space:nowrap; }
+  .toast.show { opacity:1; }
+  .toast.error { background:#c0392b; }
+  @media(max-width:500px) { .form-two { grid-template-columns:1fr; } .vehicle-price { font-size:28px; } }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header>
+  <div class="logo-tiger">TIGER</div>
+  <div class="logo-sub">Mobile Detailing</div>
+  <div class="tagline">Clean Inside. Confidence Outside.</div>
+</header>
+
+<!-- INFO BAR -->
+<div style="background:#0d1f3c;border-bottom:1px solid #2a52a0;padding:12px 16px;">
+  <div style="max-width:780px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px;">
+    <span style="font-size:12px;color:var(--text-muted);letter-spacing:1px;">📍 Lansing & Grand Rapids, MI · 35 Mile Radius</span>
+    <span style="color:var(--border);">|</span>
+    <a href="tel:5174803749" style="font-size:13px;color:#7EB3FF;font-weight:700;text-decoration:none;letter-spacing:1px;">📞 517-480-3749</a>
+    <span style="color:var(--border);">|</span>
+    <span style="font-size:12px;color:var(--text-muted);">Mon–Sat · 6:30 AM – 4:30 PM</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- BUSINESS INTRO -->
+  <div style="text-align:center;padding:28px 10px 24px;border-bottom:2px solid #C5D0E6;margin-bottom:32px;background:#fff;border-radius:10px;margin-top:8px;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;color:#1B3A6B;text-transform:uppercase;margin-bottom:10px;">Premium Mobile Auto Detailing</div>
+    <p style="font-size:15px;color:#3a4a60;line-height:1.7;max-width:560px;margin:0 auto;">We come <strong style="color:#1B3A6B;">directly to you</strong> — home, office, or anywhere in the <strong style="color:#1B3A6B;">Lansing & Grand Rapids, MI area</strong> and up to 35 miles surrounding. Professional results, every time.</p>
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:20px;flex-wrap:wrap;">
+      <div style="background:#F2F5FA;border:1.5px solid #C5D0E6;border-radius:8px;padding:12px 18px;text-align:center;min-width:90px;">
+        <div style="font-size:22px;">⭐</div>
+        <div style="font-size:11px;color:#1B3A6B;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px;">5-Star Service</div>
+      </div>
+      <div style="background:#F2F5FA;border:1.5px solid #C5D0E6;border-radius:8px;padding:12px 18px;text-align:center;min-width:90px;">
+        <div style="font-size:22px;">🚗</div>
+        <div style="font-size:11px;color:#1B3A6B;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px;">We Come To You</div>
+      </div>
+      <div style="background:#F2F5FA;border:1.5px solid #C5D0E6;border-radius:8px;padding:12px 18px;text-align:center;min-width:90px;">
+        <div style="font-size:22px;">🛡️</div>
+        <div style="font-size:11px;color:#1B3A6B;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:6px;">Trusted & Professional</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TIGER STANDARD SECTION ── -->
+  <div style="margin-bottom:40px;">
+
+    <!-- HERO TAGLINE -->
+    <div style="text-align:center;padding:36px 10px 28px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:5px;color:#1B3A6B;text-transform:uppercase;margin-bottom:8px;">The</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,10vw,68px);color:#1B3A6B;letter-spacing:6px;line-height:1;">TIGER STANDARD</div>
+      <div style="width:60px;height:2px;background:#1B3A6B;margin:14px auto;"></div>
+      <div style="font-size:15px;color:var(--silver);letter-spacing:2px;font-style:italic;">More than clean. It's a standard.</div>
+    </div>
+
+    <!-- 3 PILLARS -->
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:32px;">
+
+      <div style="background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:20px;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;flex-shrink:0;">🚗</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:6px;">Mobile Service</div>
+          <div style="font-size:14px;color:#aaa;line-height:1.6;">We come to your home, office, or anywhere in the <strong style="color:var(--white);">Lansing, MI area and up to 35 miles surrounding.</strong> No need to drop off your vehicle.</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:20px;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;flex-shrink:0;">🛡️</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:6px;">Quality Care You Can Trust</div>
+          <div style="font-size:14px;color:#aaa;line-height:1.6;">Professional products, attention to detail, and a passion for making every vehicle <strong style="color:var(--white);">look and smell incredible.</strong></div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:20px;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;flex-shrink:0;">✨</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:6px;">Details Matter Every Time</div>
+          <div style="font-size:14px;color:#aaa;line-height:1.6;">We obsess over the little things — because that's what separates <strong style="color:var(--white);">a good detail from a great one.</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WHAT WE OFFER -->
+    <div style="border-top:1px solid var(--border);padding-top:28px;">
+      <div style="text-align:center;margin-bottom:22px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:5px;color:var(--red);text-transform:uppercase;margin-bottom:6px;">What We Offer</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,7vw,46px);color:var(--red);letter-spacing:4px;">Express Detail</div>
+        <div style="font-size:13px;color:var(--silver);margin-top:4px;font-style:italic;">Our signature service — a thorough, efficient clean that brings your vehicle back to life inside and out.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Vacuum</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Seats, floors, trunk & crevices</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Wipe Down Surfaces</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Dashboard, doors, console & trim</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Deep Crevice Clean</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Cracks, grime & debris removal</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Trash Removal</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Full interior trash & clutter clear out</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Clean Windows</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Inside & out streak-free finish</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Air Freshener</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Premium scent of your choice</div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px 12px;display:flex;gap:10px;align-items:flex-start;grid-column:1/-1;">
+          <div style="color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;">▸</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--silver);">Floor Mats Cleaned</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Removed, deep cleaned & reinstalled</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIVIDER INTO BOOKING -->
+    <div style="text-align:center;margin-top:36px;margin-bottom:4px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,42px);color:var(--red);letter-spacing:4px;">Book Your Detail</div>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Fill out the form below and we'll confirm within 24 hours.</div>
+    </div>
+
+  </div>
+
+  <div id="booking-form">
+    <!-- STEP 1: SERVICE TYPE -->
+    <div class="section-title">Step 1 — Choose Your Service</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+
+      <div class="service-card" id="svc-basic" onclick="selectService(this,'Basic Interior Clean','basic')" style="padding:18px 12px;">
+        <div style="font-size:24px;margin-bottom:6px;">🧹</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;color:#1B3A6B;text-transform:uppercase;">Basic Interior</div>
+        <div style="font-size:11px;color:var(--text-muted);margin:4px 0 8px;">Maintenance Clean</div>
+        <div style="font-size:11px;color:var(--text-muted);">🕐 2–4 Hours</div>
+        <div style="margin-top:10px;font-size:11px;color:#1B3A6B;font-weight:600;">From $100</div>
+      </div>
+
+      <div class="service-card" id="svc-deep" onclick="selectService(this,'Deep Interior Detail','deep')" style="padding:18px 12px;">
+        <div style="font-size:24px;margin-bottom:6px;">✨</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;color:#1B3A6B;text-transform:uppercase;">Deep Interior</div>
+        <div style="font-size:11px;color:var(--text-muted);margin:4px 0 8px;">Deep Clean & Refresh</div>
+        <div style="font-size:11px;color:var(--text-muted);">🕐 4–8+ Hours</div>
+        <div style="margin-top:10px;font-size:11px;color:#1B3A6B;font-weight:600;">From $175</div>
+      </div>
+
+    </div>
+
+    <!-- SERVICE INCLUDES -->
+    <div id="service-includes" style="display:none;margin-bottom:20px;">
+      <div id="basic-includes" style="display:none;background:#F2F5FA;border:1.5px solid #C5D0E6;border-radius:8px;padding:16px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#1B3A6B;text-transform:uppercase;margin-bottom:10px;">What's Included</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:#3a4a60;">
+          <div>✅ Full interior vacuum</div>
+          <div>✅ Surface wipe-down</div>
+          <div>✅ Cup holders & storage</div>
+          <div>✅ Interior window cleaning</div>
+          <div>✅ Floor mat cleaning</div>
+          <div>✅ Light air freshener</div>
+        </div>
+      </div>
+      <div id="deep-includes" style="display:none;background:#0d1f3c;border:1.5px solid #2a52a0;border-radius:8px;padding:16px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#7EB3FF;text-transform:uppercase;margin-bottom:10px;">What's Included</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:#CBD8EE;">
+          <div>✅ Everything in Basic</div>
+          <div>✅ Steam clean vents & seams</div>
+          <div>✅ Seats & upholstery shampoo</div>
+          <div>✅ Carpet shampoo & extraction</div>
+          <div>✅ Heavy stain treatment</div>
+          <div>✅ Floor mats deep cleaned</div>
+          <div>✅ Pet hair removal</div>
+          <div>✅ Odor elimination</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- STEP 2: VEHICLE SIZE -->
+    <div class="section-title">Step 2 — Choose Your Vehicle Size</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:20px;" id="vehicle-size-grid">
+
+      <div class="service-card" id="veh-small" onclick="selectVehicleSize(this,'Small Car','Cars / Coupes / Hatchbacks')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;opacity:0.4;pointer-events:none;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="font-size:28px;">🚗</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;color:#1B3A6B;text-transform:uppercase;">Small Car</div>
+            <div style="font-size:11px;color:var(--text-muted);">Cars / Coupes / Hatchbacks</div>
+          </div>
+        </div>
+        <div id="price-small" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#1B3A6B;">—</div>
+      </div>
+
+      <div class="service-card" id="veh-suv" onclick="selectVehicleSize(this,'SUV / Van','Small SUV / Crossovers / Van')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;opacity:0.4;pointer-events:none;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="font-size:28px;">🚙</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;color:#1B3A6B;text-transform:uppercase;">SUV / Van</div>
+            <div style="font-size:11px;color:var(--text-muted);">Small SUV / Crossovers / Van</div>
+          </div>
+        </div>
+        <div id="price-suv" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#1B3A6B;">—</div>
+      </div>
+
+      <div class="service-card" id="veh-truck" onclick="selectVehicleSize(this,'Truck / 3-Row','Large SUV / Trucks / 3-Row')" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;opacity:0.4;pointer-events:none;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="font-size:28px;">🛻</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;color:#1B3A6B;text-transform:uppercase;">Truck / 3-Row</div>
+            <div style="font-size:11px;color:var(--text-muted);">Large SUV / Trucks / 3-Row</div>
+          </div>
+        </div>
+        <div id="price-truck" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#1B3A6B;">—</div>
+      </div>
+
+    </div>
+
+    <!-- MOBILE REQUIREMENTS NOTE -->
+    <div style="background:#fff8e6;border:1.5px solid #f5c842;border-radius:8px;padding:14px 16px;margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;color:#7a5c00;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">📋 Mobile Service Requirements</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:#5a4400;">
+        <div>💧 Access to water</div>
+        <div>🔌 Standard electrical outlet</div>
+        <div style="grid-column:1/-1;">🚗 Vehicle accessible at service location</div>
+      </div>
+      <div style="font-size:11px;color:#7a5c00;margin-top:8px;font-style:italic;">Thank you for helping us deliver the best possible service!</div>
+    </div>
+
+    <div class="price-bar">
+      <div>
+        <div class="price-label">Estimated Total</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;" id="price-sub">Select a vehicle to start</div>
+      </div>
+      <div class="price-total" id="price-display">—</div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="section-title">Your Info</div>
+    <div class="form-two">
+      <div class="form-row"><label>First Name</label><input type="text" id="fname" placeholder="John"/></div>
+      <div class="form-row"><label>Last Name</label><input type="text" id="lname" placeholder="Smith"/></div>
+    </div>
+    <div class="form-two">
+      <div class="form-row"><label>Phone Number</label><input type="tel" id="phone" placeholder="(555) 000-0000"/></div>
+      <div class="form-row"><label>Email</label><input type="email" id="email" placeholder="john@email.com"/></div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="section-title">Appointment Details</div>
+    <div class="form-row">
+      <label>Preferred Date</label>
+      <input type="date" id="apt-date" oninput="loadSlots(this.value)"/>
+    </div>
+    <div class="form-row">
+      <label>Select Time Slot</label>
+      <div id="slot-container" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;">
+        <div style="color:var(--text-muted);font-size:13px;grid-column:1/-1;">Pick a date first to see available slots.</div>
+      </div>
+      <input type="hidden" id="apt-time"/>
+    </div>
+    <div class="form-row"><label>Service Address</label><input type="text" id="address" placeholder="123 Main St, City, State"/></div>
+    <!-- STEP 3: VEHICLE DETAILS -->
+    <div class="section-title" style="margin-top:8px;">Step 3 — Vehicle Details</div>
+    <div class="form-two">
+      <div class="form-row">
+        <label>Year</label>
+        <select id="vehicle-year">
+          <option value="">Select year...</option>
+          <option value="2035">2035</option>
+          <option value="2034">2034</option>
+          <option value="2033">2033</option>
+          <option value="2032">2032</option>
+          <option value="2031">2031</option>
+          <option value="2030">2030</option>
+          <option value="2029">2029</option>
+          <option value="2028">2028</option>
+          <option value="2027">2027</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+          <option value="2007">2007</option>
+          <option value="2006">2006</option>
+          <option value="2005">2005</option>
+          <option value="2004">2004</option>
+          <option value="2003">2003</option>
+          <option value="2002">2002</option>
+          <option value="2001">2001</option>
+          <option value="2000">2000</option>
+          <option value="1999">1999</option>
+          <option value="1998">1998</option>
+          <option value="1997">1997</option>
+          <option value="1996">1996</option>
+          <option value="1995">1995</option>
+          <option value="1994">1994</option>
+          <option value="1993">1993</option>
+          <option value="1992">1992</option>
+          <option value="1991">1991</option>
+          <option value="1990">1990</option>
+          <option value="1989">1989</option>
+          <option value="1988">1988</option>
+          <option value="1987">1987</option>
+          <option value="1986">1986</option>
+          <option value="1985">1985</option>
+          <option value="1984">1984</option>
+          <option value="1983">1983</option>
+          <option value="1982">1982</option>
+          <option value="1981">1981</option>
+          <option value="1980">1980</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Make</label>
+        <select id="vehicle-make">
+          <option value="">Select make...</option>
+          <option value="Acura">Acura</option>
+          <option value="Alfa Romeo">Alfa Romeo</option>
+          <option value="Audi">Audi</option>
+          <option value="BMW">BMW</option>
+          <option value="Buick">Buick</option>
+          <option value="Cadillac">Cadillac</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Chrysler">Chrysler</option>
+          <option value="Dodge">Dodge</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="Fiat">Fiat</option>
+          <option value="Ford">Ford</option>
+          <option value="Genesis">Genesis</option>
+          <option value="GMC">GMC</option>
+          <option value="Honda">Honda</option>
+          <option value="Hyundai">Hyundai</option>
+          <option value="Infiniti">Infiniti</option>
+          <option value="Jaguar">Jaguar</option>
+          <option value="Jeep">Jeep</option>
+          <option value="Kia">Kia</option>
+          <option value="Land Rover">Land Rover</option>
+          <option value="Lexus">Lexus</option>
+          <option value="Lincoln">Lincoln</option>
+          <option value="Maserati">Maserati</option>
+          <option value="Mazda">Mazda</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Mitsubishi">Mitsubishi</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Porsche">Porsche</option>
+          <option value="Ram">Ram</option>
+          <option value="Rolls-Royce">Rolls-Royce</option>
+          <option value="Subaru">Subaru</option>
+          <option value="Tesla">Tesla</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Volkswagen">Volkswagen</option>
+          <option value="Volvo">Volvo</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-two">
+      <div class="form-row">
+        <label>Model</label>
+        <input type="text" id="vehicle-model" placeholder="e.g. Accord, F-150, Tahoe"/>
+      </div>
+      <div class="form-row">
+        <label>Color</label>
+        <input type="text" id="vehicle-color" placeholder="e.g. Black, White, Silver"/>
+      </div>
+    </div>
+    <div class="form-row"><label>Notes (optional)</label><textarea id="notes" placeholder="Any specific areas of concern, access instructions, etc."></textarea></div>
+
+    <hr class="divider"/>
+
+    <div class="section-title">Upload Car Photos</div>
+    <div class="upload-zone">
+      <input type="file" id="photo-input" multiple accept="image/*" onchange="handlePhotos(this)"/>
+      <div class="upload-icon">📸</div>
+      <div class="upload-text"><strong>Tap to add photos</strong> of your vehicle<br/>so we know what to expect</div>
+    </div>
+    <div class="preview-grid" id="preview-grid"></div>
+
+    <hr class="divider"/>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitBooking()">Request Appointment →</button>
+    <p class="note">We'll review your request and confirm within 24 hours.</p>
+  </div>
+
+  <div id="success-screen">
+    <div class="success-icon">🏁</div>
+    <div class="success-title">Booking Received!</div>
+    <p class="success-msg">Thanks! We got your request and will confirm<br/>your appointment within 24 hours.</p>
+    <div style="background:#1C1C1C;border:1.5px solid #f5a623;border-radius:8px;padding:14px 16px;margin-top:20px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto;">
+      <div style="font-size:13px;font-weight:700;color:#f5a623;letter-spacing:1px;margin-bottom:6px;">📬 Check Your Spam Folder!</div>
+      <div style="font-size:13px;color:#888;line-height:1.6;">When your appointment is <strong style="color:#27ae60;">confirmed</strong> or <strong style="color:#ccc;">declined</strong> you will get an email from us. If you don not see it — <strong style="color:#fff;">check your spam or junk folder</strong> and tap "Not Spam" so future emails go straight to your inbox.</div>
+    </div>
+  </div>
+
+  <div class="admin-toggle">
+    <button onclick="toggleAdmin()">Owner Login</button>
+  </div>
+
+  <div id="admin-panel">
+    <div id="admin-login-section" style="margin-top:16px;">
+      <div class="admin-login">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:14px;">Owner Access</div>
+        <input type="password" id="admin-pass" placeholder="Password" onkeydown="if(event.key==='Enter')checkPass()"/>
+        <button onclick="checkPass()">Enter Dashboard</button>
+      </div>
+    </div>
+
+    <div id="admin-dashboard" style="display:none;margin-top:20px;">
+      <div class="admin-title">Booking Dashboard</div>
+      <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;">Auto-refreshes every 30 sec 🔄</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;">
+        <div style="background:var(--card);border:1.5px solid #f5a623;border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#f5a623;" id="stat-pending">0</div>
+          <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;">Pending</div>
+        </div>
+        <div style="background:var(--card);border:1.5px solid #27ae60;border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#27ae60;" id="stat-accepted">0</div>
+          <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;">Accepted</div>
+        </div>
+        <div style="background:var(--card);border:1.5px solid var(--red);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--red);" id="stat-revenue">$0</div>
+          <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;">Revenue</div>
+        </div>
+      </div>
+      <div class="filter-tabs">
+        <div class="filter-tab active" onclick="filterBookings('all',this)">All</div>
+        <div class="filter-tab" onclick="filterBookings('pending',this)">Pending</div>
+        <div class="filter-tab" onclick="filterBookings('accepted',this)">Accepted</div>
+        <div class="filter-tab" onclick="filterBookings('declined',this)">Declined</div>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:20px;">
+        <button onclick="clearDeclined()" style="flex:1;background:var(--panel);border:1.5px solid var(--border);color:var(--text-muted);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:5px;cursor:pointer;">🗑 Clear Declined</button>
+        <button onclick="clearAll()" style="flex:1;background:var(--panel);border:1.5px solid var(--red);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:5px;cursor:pointer;">⚠️ Clear All</button>
+      </div>
+      <div id="bookings-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── CONFIG ──
+  const EMAILJS_PUBLIC_KEY = 'RAPUGsELXhqSCsxxL';
+  const EMAILJS_SERVICE    = 'service_oqn6rhv';
+  const EMAILJS_TEMPLATE   = 'template_b0m4jur';
+  const OWNER_PASSWORD     = 'Tiger2025';
+  const FB_URL             = 'https://tiger-mobile-detailing-default-rtdb.firebaseio.com';
+
+  // ── FIREBASE REST API HELPERS ──
+  async function fbSave(id, data) {
+    await fetch(FB_URL + '/bookings/' + id + '.json', {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+  }
+  async function fbUpdate(id, data) {
+    await fetch(FB_URL + '/bookings/' + id + '.json', {
+      method: 'PATCH',
+      body: JSON.stringify(data)
+    });
+  }
+  async function fbDelete(path) {
+    await fetch(FB_URL + path + '.json', { method: 'DELETE' });
+  }
+  async function fbGet() {
+    const r = await fetch(FB_URL + '/bookings.json');
+    const data = await r.json();
+    if (!data) return [];
+    return Object.values(data).sort((a,b) => b.id - a.id);
+  }
+
+  // ── STATE ──
+  let selectedService = null;   // 'basic' or 'deep'
+  let selectedServiceName = ''; // 'Basic Interior Clean' or 'Deep Interior Detail'
+  let selectedVehicle = null;   // 'Small Car', 'SUV / Van', 'Truck / 3-Row'
+  let basePrice = 0;
+  let uploadedPhotos = [];
+  let bookings = [];
+  let currentFilter = 'all';
+
+  // Pricing table
+  const PRICES = {
+    basic: { 'Small Car': 100, 'SUV / Van': 140, 'Truck / 3-Row': 180 },
+    deep:  { 'Small Car': 175, 'SUV / Van': 220, 'Truck / 3-Row': 280 }
+  };
+
+  // ── EMAILJS INIT ──
+  (function() {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload = () => {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      console.log('EmailJS ready');
+    };
+    document.head.appendChild(s);
+  })();
+
+  // ── TOAST ──
+  function showToast(msg, isError) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (isError ? ' error' : '');
+    setTimeout(() => t.className = 'toast', 3500);
+  }
+
+  // ── VEHICLE ──
+  function selectVehicle(el, type, price) {
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedVehicle = type;
+    basePrice = price;
+    updatePrice();
+  }
+
+  // ── ADDONS ──
+  function toggleAddon(el, key, price) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) { addons[key] = price; } else { delete addons[key]; }
+    updatePrice();
+  }
+
+  // ── PRICE ──
+  function updatePrice() {
+    if (!selectedVehicle) return;
+    const addonTotal = Object.values(addons).reduce((a,b)=>a+b,0);
+    document.getElementById('price-display').textContent = '$' + (basePrice + addonTotal);
+    document.getElementById('price-sub').textContent = selectedVehicle + (Object.keys(addons).length ? ' + ' + Object.keys(addons).join(', ') : '');
+  }
+
+  // ── PHOTOS (compressed to avoid stuck loading) ──
+  function handlePhotos(input) {
+    Array.from(input.files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        // Compress image using canvas before storing
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX = 600;
+          let w = img.width, h = img.height;
+          if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+          else       { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.5);
+          uploadedPhotos.push(compressed);
+          const thumb = document.createElement('img');
+          thumb.src = compressed;
+          thumb.className = 'preview-img';
+          document.getElementById('preview-grid').appendChild(thumb);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ── SUBMIT ──
+  async function submitBooking() {
+    if (!selectedVehicle) { showToast('Please select your vehicle type.', true); return; }
+    const fname   = document.getElementById('fname').value.trim();
+    const lname   = document.getElementById('lname').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const date    = document.getElementById('apt-date').value;
+    const address = document.getElementById('address').value.trim();
+    if (!fname || !lname || !phone || !date || !address) {
+      showToast('Please fill in all required fields.', true); return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const addonTotal = Object.values(addons).reduce((a,b)=>a+b,0);
+    const total = basePrice + addonTotal;
+    const addonNames = Object.keys(addons).join(', ') || 'None';
+
+    const booking = {
+      id: Date.now(), status: 'pending',
+      name: fname + ' ' + lname, phone, email,
+      date, time: document.getElementById('apt-time').value,
+      address, vehicle: document.getElementById('vehicle-info').value.trim(),
+      vehicleType: selectedVehicle, basePrice,
+      addons: {...addons}, addonTotal, total, addonNames,
+      notes: document.getElementById('notes').value.trim(),
+      photos: [...uploadedPhotos],
+      submitted: new Date().toLocaleString()
+    };
+
+    // Save to Firebase including compressed photos
+    fbSave(booking.id, booking).catch(e => console.warn('Firebase:', e));
+
+    // Show success immediately
+    document.getElementById('booking-form').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+
+    // Send email to owner in background
+    emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      to_email: 'tigermobiledetailing7@gmail.com',
+      name: booking.name,
+      phone: booking.phone,
+      email: booking.email || 'Not provided',
+      date: booking.date,
+      time: booking.time || 'Flexible',
+      address: booking.address,
+      vehicle: booking.vehicle,
+      service: booking.serviceName || 'Interior Detail',
+      total: '$' + booking.total,
+      addons: addonNames,
+      message: 'New booking request — log in to your dashboard to accept or decline.',
+      title: '🚗 New Booking from ' + booking.name
+    }).catch(e => console.warn('Email error:', e));
+  }
+
+  // ── ADMIN TOGGLE ──
+  function toggleAdmin() {
+    const panel = document.getElementById('admin-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // ── ADMIN LOGIN ──
+  function checkPass() {
+    const entered = document.getElementById('admin-pass').value;
+    if (entered === OWNER_PASSWORD) {
+      document.getElementById('admin-login-section').style.display = 'none';
+      document.getElementById('admin-dashboard').style.display = 'block';
+
+        // Load bookings from Firebase and refresh every 15 seconds
+      async function refreshBookings() {
+        try {
+          bookings = await fbGet();
+          renderBookings();
+          updateStats();
+        } catch(e) { console.warn('Load error:', e); }
+      }
+      refreshBookings();
+      setInterval(refreshBookings, 15000);
+
+    } else {
+      showToast('Incorrect password.', true);
+      document.getElementById('admin-pass').value = '';
+    }
+  }
+
+  // ── STATS ──
+  function updateStats() {
+    const pending  = bookings.filter(b => b.status === 'pending').length;
+    const accepted = bookings.filter(b => b.status === 'accepted').length;
+    const revenue  = bookings.filter(b => b.status === 'accepted').reduce((s,b) => s + (b.total||0), 0);
+    document.getElementById('stat-pending').textContent  = pending;
+    document.getElementById('stat-accepted').textContent = accepted;
+    document.getElementById('stat-revenue').textContent  = '$' + revenue;
+  }
+
+  // ── FILTER ──
+  function filterBookings(filter, el) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderBookings();
+  }
+
+  // ── CLEAR ──
+  function clearDeclined() {
+    if (!confirm('Delete all declined bookings?')) return;
+    bookings.filter(b => b.status === 'declined').forEach(b => {
+      fbDelete('/bookings/' + b.id).catch(()=>{});
+    });
+    bookings = bookings.filter(b => b.status !== 'declined');
+    renderBookings(); updateStats();
+    showToast('Declined bookings cleared.');
+  }
+
+  function clearAll() {
+    if (!confirm('Clear ALL bookings? This cannot be undone.')) return;
+    fbDelete('/bookings').catch(()=>{});
+    bookings = [];
+    renderBookings(); updateStats();
+    showToast('All bookings cleared.');
+  }
+
+  // ── ACCEPT / DECLINE ──
+  async function updateStatus(id, status) {
+    const b = bookings.find(x => x.id === id);
+    if (!b) return;
+    b.status = status;
+    // Update in Firebase
+    fbUpdate(id, { status: status }).catch(e => console.warn('Firebase:', e));
+    const isAccepted = status === 'accepted';
+
+    if (b.email) {
+      try {
+        await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+          to_email: b.email,
+          name: b.name,
+          phone: b.phone,
+          email: b.email,
+          date: b.date,
+          time: b.time || 'TBD',
+          address: b.address,
+          vehicle: b.vehicleType + (b.vehicle ? ' — ' + b.vehicle : ''),
+          service: 'Express Detail',
+          total: '$' + b.total,
+          addons: b.addonNames || 'None',
+          message: isAccepted
+            ? 'Great news! Your appointment is CONFIRMED 🐯 We will come to you on time and ready to make your vehicle shine. See you soon! — Tiger Mobile Detailing'
+            : 'Thank you for reaching out! Unfortunately we are unable to accommodate your request at this time. Please feel free to rebook — we would love to serve you! — Tiger Mobile Detailing',
+          title: isAccepted
+            ? '✅ Appointment Confirmed – Tiger Mobile Detailing'
+            : 'Booking Update – Tiger Mobile Detailing'
+        });
+        showToast(isAccepted ? '✅ Accepted! Client notified by email.' : 'Declined. Client notified.');
+      } catch(e) {
+        showToast(isAccepted ? '✅ Accepted! (Email failed)' : 'Declined.', true);
+      }
+    } else {
+      showToast(isAccepted ? '✅ Appointment accepted!' : 'Appointment declined.');
+    }
+    renderBookings(); updateStats();
+  }
+
+  // ── RENDER BOOKINGS ──
+  function renderBookings() {
+    const list = document.getElementById('bookings-list');
+    const filtered = currentFilter === 'all' ? bookings : bookings.filter(b => b.status === currentFilter);
+    if (!filtered.length) { list.innerHTML = '<div class="admin-empty">No bookings here yet. 🐯</div>'; return; }
+    list.innerHTML = filtered.map(b => {
+      const photos = (b.photos||[]).filter(p => p && p.startsWith('data:')).map(p => `<img src="${p}" onclick="viewPhoto('${p}')">`).join('');
+      const statusClass = {pending:'status-pending',accepted:'status-accepted',declined:'status-declined'}[b.status];
+      const actions = b.status === 'pending'
+        ? `<div class="booking-actions">
+            <button class="btn-accept" onclick="updateStatus(${b.id},'accepted')">✓ Accept</button>
+            <button class="btn-decline" onclick="updateStatus(${b.id},'declined')">✕ Decline</button>
+           </div>`
+        : `<div style="margin-top:12px;font-size:12px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">
+            ${b.status==='accepted'?'✅ Accepted — client emailed':'✕ Declined'}
+           </div>`;
+      return `<div class="booking-card ${b.status}">
+        <div class="booking-header">
+          <div class="booking-name">${b.name}</div>
+          <div class="booking-status ${statusClass}">${b.status}</div>
+        </div>
+        <div class="booking-detail"><strong>Submitted:</strong> ${b.submitted||''}</div>
+        <div class="booking-detail"><strong>Date:</strong> ${b.date}${b.time?' @ '+b.time:''}</div>
+        <div class="booking-detail"><strong>Vehicle:</strong> ${b.vehicleType}${b.vehicle?' — '+b.vehicle:''}</div>
+        <div class="booking-detail"><strong>Location:</strong> ${b.address}</div>
+        <div class="booking-detail"><strong>Phone:</strong> <a href="tel:${b.phone}" style="color:var(--red);text-decoration:none;">${b.phone}</a>${b.email?' · '+b.email:''}</div>
+        <div class="booking-detail"><strong>Total:</strong> $${b.total}${b.addonNames&&b.addonNames!=='None'?' ('+b.addonNames+')':''}</div>
+        ${b.notes?`<div class="booking-detail"><strong>Notes:</strong> ${b.notes}</div>`:''}
+        ${photos?`<div class="booking-photos">${photos}</div>`:''}
+        ${actions}
+      </div>`;
+    }).join('');
+  }
+
+  function viewPhoto(src) {
+    const w = window.open();
+    w.document.write(`<body style="margin:0;background:#000"><img src="${src}" style="max-width:100%"></body>`);
+  }
+
+  // ── SLOT SYSTEM ──
+  const SLOTS = [
+    { id: 'am', label: '6:30 AM', basicSub: '2–4 hrs · Done by ~10:30 AM', deepSub: '4–8+ hrs · Full day' },
+    { id: 'am2', label: '8:30 AM', basicSub: '2–4 hrs · Done by ~12:30 PM', deepSub: 'Basic Only · Deep takes full day' }
+  ];
+
+  async function loadSlots(date) {
+    document.getElementById('apt-time').value = '';
+    const container = document.getElementById('slot-container');
+    if (!date) { container.innerHTML = '<div style="color:var(--text-muted);font-size:13px;grid-column:1/-1;">Pick a date first.</div>'; return; }
+
+    container.innerHTML = '<div style="color:var(--text-muted);font-size:13px;grid-column:1/-1;">Checking availability...</div>';
+
+    let dayBookings = [];
+    try {
+      const r = await fetch(FB_URL + '/bookings.json');
+      const data = await r.json();
+      if (data) {
+        dayBookings = Object.values(data)
+          .filter(b => b.date === date && (b.status === 'accepted' || b.status === 'pending'));
+      }
+    } catch(e) { console.warn('Slot check error:', e); }
+
+    const bookedSlots = dayBookings.map(b => b.time);
+    const hasDeepBooked = dayBookings.some(b => b.serviceType === 'deep');
+    const isDeepSelected = selectedService === 'deep';
+
+    // If deep is booked today — whole day is blocked
+    if (hasDeepBooked) {
+      container.innerHTML = `<div style="background:#fff3f3;border:1.5px solid #e74c3c;border-radius:7px;padding:16px;text-align:center;grid-column:1/-1;">
+        <div style="font-size:20px;margin-bottom:6px;">🚫</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#c0392b;letter-spacing:2px;">Fully Booked</div>
+        <div style="font-size:12px;color:#888;margin-top:4px;">A Deep Detail is scheduled this day. Please choose another date.</div>
+        <div style="font-size:11px;color:#aaa;margin-top:6px;font-style:italic;">Slot may open if we finish early — call/text 517-480-3749</div>
+      </div>`;
+      return;
+    }
+
+    container.innerHTML = SLOTS.map(slot => {
+      const taken = bookedSlots.includes(slot.label);
+      // PM slot not available for deep detail
+      const deepPMBlocked = isDeepSelected && slot.id === 'am2';
+
+      if (taken || deepPMBlocked) {
+        const reason = deepPMBlocked ? '⚠️ Deep Detail — AM Only' : '🚫 BOOKED';
+        const note = deepPMBlocked ? 'Deep details require a full day' : 'Slot may open if done early · 517-480-3749';
+        return `<div style="background:#f5f5f5;border:1.5px solid #ddd;border-radius:7px;padding:14px 12px;text-align:center;opacity:0.6;cursor:not-allowed;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#999;">${slot.label}</div>
+          <div style="font-size:10px;color:#999;letter-spacing:1px;text-transform:uppercase;margin-top:2px;">${reason}</div>
+          <div style="font-size:10px;color:#bbb;margin-top:4px;font-style:italic;">${note}</div>
+        </div>`;
+      }
+
+      const sub = isDeepSelected ? slot.deepSub : slot.basicSub;
+      return `<div class="slot-card" onclick="selectSlot(this,'${slot.label}')" style="background:#fff;border:1.5px solid #C5D0E6;border-radius:7px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .15s;" data-slot="${slot.label}">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1B3A6B;">${slot.label}</div>
+        <div style="font-size:10px;color:#5a6a85;letter-spacing:1px;margin-top:2px;">${sub}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function selectSlot(el, value) {
+    document.querySelectorAll('.slot-card').forEach(c => {
+      c.style.borderColor = 'var(--border)';
+      c.style.background = 'var(--card)';
+    });
+    el.style.borderColor = '#1B3A6B';
+    el.style.background = '#dde6f7';
+    document.getElementById('apt-time').value = value;
+  }
+
+  document.getElementById('apt-date').min = new Date().toISOString().split('T')[0];
+</script>
+
+<!-- PROFESSIONAL FOOTER -->
+<footer style="background:#0d1f3c;border-top:2px solid #2a52a0;padding:32px 20px;margin-top:40px;">
+  <div style="max-width:780px;margin:0 auto;">
+
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;letter-spacing:6px;">TIGER</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:#CBD8EE;letter-spacing:6px;text-transform:uppercase;">Mobile Detailing</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;letter-spacing:2px;">CLEAN INSIDE. CONFIDENCE OUTSIDE.</div>
+    </div>
+
+    <!-- Contact Cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;">Phone</div>
+        <a href="tel:5174803749" style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#7EB3FF;text-decoration:none;letter-spacing:1px;">517-480-3749</a>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Call or Text</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;">Hours</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--silver);letter-spacing:1px;">Mon – Sat</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">6:30 AM – 4:30 PM</div>
+      </div>
+    </div>
+
+    <!-- Service Area -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;">Service Area</div>
+      <div style="font-size:14px;font-weight:700;color:var(--silver);">Lansing & Grand Rapids, MI</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">& Surrounding areas up to 35 miles</div>
+    </div>
+
+    <!-- Social + Linktree Buttons -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+      <a href="https://www.facebook.com/share/1bfjb8WVsF/?mibextid=wwXIfr" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#1877F2;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px;border-radius:6px;text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/tiger.mobiledetailing?igsh=MXU5dGV1dXQ4Zjg4dw%3D%3D&utm_source=qr" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px;border-radius:6px;text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+    </div>
+
+    <!-- Linktree -->
+    <a href="https://linktr.ee/Tigermobiledetailing" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#1DB954;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px;border-radius:6px;text-decoration:none;width:100%;margin-bottom:24px;">
+      🌿 Learn More — linktr.ee/Tigermobiledetailing
+    </a>
+
+    <div style="text-align:center;font-size:11px;color:#5a7aaa;letter-spacing:1px;">
+      © 2025 Tiger Mobile Detailing · All Rights Reserved
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
